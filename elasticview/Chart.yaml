@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.1.0
+description: 由go语言+vue编写的轻量级elasticsearch客户端
+name: elasticview
+type: application
+version: 0.1.0

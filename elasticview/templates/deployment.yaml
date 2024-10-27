@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "elasticview.fullname" . }}
+  labels:
+    app: elasticview
+  {{- include "elasticview.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.elasticview.replicas }}
+  selector:
+    matchLabels:
+      app: elasticview
+    {{- include "elasticview.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: elasticview
+      {{- include "elasticview.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: {{ .Values.elasticview.elasticview.image.repository }}:{{ .Values.elasticview.elasticview.image.tag
+          | default .Chart.AppVersion }}
+        imagePullPolicy: {{ .Values.elasticview.elasticview.imagePullPolicy }}
+        name: elasticview
+        ports:
+        - containerPort: 8090
+          protocol: TCP
+        resources: {}
+      restartPolicy: Always

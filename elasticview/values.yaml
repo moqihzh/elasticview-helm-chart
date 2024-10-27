@@ -1,0 +1,12 @@
+elasticview:
+  elasticview:
+    image:
+      repository: registry.cn-hangzhou.aliyuncs.com/hzh-public/elastic_view
+      tag: latest
+    imagePullPolicy: IfNotPresent
+  ports:
+  - name: "8090"
+    port: 8090
+    targetPort: 8090
+  replicas: 1
+  type: ClusterIP
